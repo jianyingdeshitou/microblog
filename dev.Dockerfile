@@ -11,7 +11,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # 添加应用
-ADD . /src
+# ADD . /src
 
 EXPOSE 5000
 

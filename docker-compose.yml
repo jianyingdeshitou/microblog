@@ -1,0 +1,24 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  microblog:
+    build: .
+    # restart: always
+    # ports:
+    #   - 5000:5000
+    networks:
+      front:
+      backend:
+
+networks:
+
+  front:
+    external:
+      name: front
+
+  backend:
+    external:
+      name: backend
+

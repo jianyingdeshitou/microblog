@@ -4,12 +4,14 @@ FROM python:3.7
 RUN mkdir -p /src
 WORKDIR /src
 
-# 添加应用
-ADD . /src
+ADD ./requirements.txt /src/requirements.txt
 
 # 安装依赖
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
+# 添加应用
+ADD . /src
 
 EXPOSE 5000
 

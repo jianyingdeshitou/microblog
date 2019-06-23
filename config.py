@@ -11,6 +11,6 @@ class Config(object):
     DB_NAME = os.environ.get('DB_NAME')
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'mysql+mysqlconnector://root:%s@%s:3306/%s' % \
+        'mysql+pymysql://root:%s@%s:3306/%s' % \
         (DB_ROOT_PASSWORD, DB_HOST, DB_NAME)
     SQLALCHEMY_TRACK_MODIFICATIONS = False

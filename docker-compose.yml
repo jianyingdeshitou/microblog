@@ -4,10 +4,20 @@ version: '3.1'
 services:
 
   microblog:
-    build: .
+    build:
+      context: ./
+      dockerfile: dev.Dockerfile
+    image: microblog:1.0-dev
     # restart: always
     # ports:
     #   - 5000:5000
+    volumes:
+      - .:/src
+    environment:
+      SECRET_KEY: 'you-will-never-guess'
+      DB_HOST: db
+      DB_ROOT_PASSWORD: root
+      DB_NAME: microblog
     networks:
       front:
       backend:

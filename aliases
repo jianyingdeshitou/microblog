@@ -1,0 +1,3 @@
+alias container='docker exec -it microblog_microblog_1'
+alias py='container python'
+alias db-init='container flask db init'

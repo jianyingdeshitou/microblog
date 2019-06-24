@@ -15,6 +15,7 @@ from app.models import User
 
 
 ###############################################################################
+# 首页
 @app.route('/')
 @app.route('/index')
 @login_required
@@ -34,6 +35,7 @@ def index():
 
 
 ###############################################################################
+# 用户登录页
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # 如果当前用户已经登录
@@ -63,12 +65,14 @@ def login():
 
 ###############################################################################
 
+
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 ###############################################################################
+# 用户注册页面
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -83,3 +87,17 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+###############################################################################
+# 用户个人资料页面
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
+
+
+###############################################################################

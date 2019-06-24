@@ -58,6 +58,21 @@ class User(UserMixin, db.Model):
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
 
+    # 关注
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    # 取消关注
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    # 检查是否关注
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0
+
 #######################################################################
 
 

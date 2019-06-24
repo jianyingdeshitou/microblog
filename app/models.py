@@ -34,6 +34,9 @@ class User(UserMixin, db.Model):
     # 最后访问时间
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # User-Post 关系
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+
     # 多对多关注者关系
     followed = db.relationship(
         'User', secondary=followers,

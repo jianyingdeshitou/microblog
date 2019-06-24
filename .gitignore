@@ -1,5 +1,6 @@
 # ---> 项目
 logs
+.vscode
 
 # ---> Python
 # Byte-compiled / optimized / DLL files

@@ -48,3 +48,7 @@ PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL
 ## Flask-Bootstrap==3.3.7.1
 
 它提供了一个随时可用的基本模板，它安装了Bootstrap框架。
+
+## Flask-Moment==0.8.0
+
+Moment.js是一个小型的开源JavaScript库，它将日期和时间渲染到另一个级别，因为它提供了所有可以想象的格式化选项，然后是一些。前段时间我创建了Flask-Moment，这是一个小型Flask扩展，可以很容易地将moment.js合并到您的应用程序中。

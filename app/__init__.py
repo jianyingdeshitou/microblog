@@ -18,6 +18,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 
 #################################################
 # 反向代理设置
@@ -44,12 +45,14 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 
-
 # 电子邮件支持
 mail = Mail(app)
 
 # bootstrap 模版
 bootstrap = Bootstrap(app)
+
+# 处理日期时间
+moment = Moment(app)
 
 # 通过电子邮件记录错误
 # 命令行测试：python -m smtpd -n -c DebuggingServer localhost:8025

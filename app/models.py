@@ -34,6 +34,9 @@ class User(UserMixin, db.Model):
     # 最后访问时间
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # User-Post 关系
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+
     # 多对多关注者关系
     followed = db.relationship(
         'User', secondary=followers,
@@ -58,6 +61,28 @@ class User(UserMixin, db.Model):
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
 
+    # 关注
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    # 取消关注
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    # 检查是否关注
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0
+
+    # 获取被关注用户的帖子
+    def followed_posts(self):
+        followed = Post.query.join(
+            followers, (followers.c.followed_id == Post.user_id)).filter(
+                followers.c.follower_id == self.id)
+        own = Post.query.filter_by(user_id=self.id)
+        return followed.union(own).order_by(Post.timestamp.desc())
 #######################################################################
 
 

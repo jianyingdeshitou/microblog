@@ -10,3 +10,11 @@ alias db-upgrade='container flask db upgrade'
 
 alias ms='py -m smtpd -n -c DebuggingServer localhost:8025'
 
+alias pb='container pybabel'
+alias pb-messages='pb extract -F babel.cfg -k _l -o messages.pot .'
+alias pb-init='pb init -i messages.pot -d app/translations -l '
+alias pb-compile='pb compile -d app/translations'
+
+alias fti='container flask translate init '
+alias ftc='container flask translate compile'
+alias ftu='container flask translate update'

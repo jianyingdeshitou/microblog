@@ -4,7 +4,9 @@ from logging.handlers import RotatingFileHandler
 
 import os
 
+
 from flask import Flask
+from flask import request
 
 # 小写的“config”是Python模块config.py的名称，
 # 显然具有大写“C”的那个是实际的类。
@@ -19,6 +21,9 @@ from flask_mail import Mail
 
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+
+from flask_babel import Babel
+from flask_babel import lazy_gettext as _l
 
 #################################################
 # 反向代理设置
@@ -44,6 +49,7 @@ migrate = Migrate(app, db)
 # 登录
 login = LoginManager(app)
 login.login_view = 'login'
+login.login_message = _l('Please log in to access this page.')
 
 # 电子邮件支持
 mail = Mail(app)
@@ -53,6 +59,13 @@ bootstrap = Bootstrap(app)
 
 # 处理日期时间
 moment = Moment(app)
+
+# 本地化支持
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 # 通过电子邮件记录错误
 # 命令行测试：python -m smtpd -n -c DebuggingServer localhost:8025

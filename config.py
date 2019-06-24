@@ -29,3 +29,5 @@ class Config(object):
     # 分页
     POSTS_PER_PAGE = 5
 
+    # 语言
+    LANGUAGES = ['en', 'es']

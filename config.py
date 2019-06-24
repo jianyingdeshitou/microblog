@@ -27,5 +27,5 @@ class Config(object):
     ADMINS = ['your-email@example.com']
 
     # 分页
-    POSTS_PER_PAGE = 3
+    POSTS_PER_PAGE = 25
 

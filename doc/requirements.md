@@ -36,4 +36,11 @@ PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL
 FLASK_APP=microblog.py
 ```
 
+## Flask-Mail==0.9.1
+
+发送电子邮件
+
+## PyJWT==1.7.1
+
+密码重置链接中将包含安全令牌。为了生成这些令牌，我将使用JSON Web Tokens，它也有一个流行的Python包
 

@@ -1,8 +1,12 @@
 alias container='docker exec -it microblog_microblog_1'
+
 alias py='container python'
 alias fsh='container flask shell'
 alias cmd='container bashs'
+
 alias db-init='container flask db init'
 alias db-migrate='container flask db migrate'
 alias db-upgrade='container flask db upgrade'
-alias ut='container flask db upgrade'
+
+alias ms='py -m smtpd -n -c DebuggingServer localhost:8025'
+

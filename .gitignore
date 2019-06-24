@@ -1,6 +1,7 @@
 # ---> 项目
 logs
 .vscode
+messages.pot
 
 # ---> Python
 # Byte-compiled / optimized / DLL files

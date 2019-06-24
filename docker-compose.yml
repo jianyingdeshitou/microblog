@@ -18,6 +18,8 @@ services:
       DB_HOST: db
       DB_ROOT_PASSWORD: root
       DB_NAME: microblog
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
     networks:
       front:
       backend:

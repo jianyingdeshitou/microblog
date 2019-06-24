@@ -10,6 +10,13 @@ from app import db
 from app import login
 
 #######################################################################
+# 关注者关联表
+followers = db.Table('followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
+
+#######################################################################
 # 用户数据库模型
 
 
@@ -26,6 +33,13 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     # 最后访问时间
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # 多对多关注者关系
+    followed = db.relationship(
+        'User', secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

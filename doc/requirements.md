@@ -4,6 +4,18 @@
 
 (略)
 
+## python-dotenv==0.10.3
+
+由于不会在终端会话中记住FLASK_APP环境变量，因此在打开新的终端窗口时，您可能总是需要设置环境变量。从版本1.0开始，Flask允许您注册在运行flask命令时要自动导入的环境变量。要使用此选项，您必须安装python-dotenv包：
+
+然后，您可以在项目的顶级目录中的.flaskenv文件中编写环境变量名称和值：
+
+.flaskenv：flask命令的环境变量
+
+```
+FLASK_APP=microblog.py
+```
+
 ## Flask-WTF==0.14.2
 
 这是一个围绕WTForms包的薄包装，可以很好地将它与Flask集成。
@@ -24,17 +36,6 @@ PyMySQL 遵循 Python 数据库 API v2.0 规范，并包含了 pure-Python MySQL
 
 未安装，使用时会遇到：ModuleNotFoundError: No module named 'MySQLdb'
 
-## python-dotenv==0.10.3
-
-由于不会在终端会话中记住FLASK_APP环境变量，因此在打开新的终端窗口时，您可能总是需要设置环境变量。从版本1.0开始，Flask允许您注册在运行flask命令时要自动导入的环境变量。要使用此选项，您必须安装python-dotenv包：
-
-然后，您可以在项目的顶级目录中的.flaskenv文件中编写环境变量名称和值：
-
-.flaskenv：flask命令的环境变量
-
-```
-FLASK_APP=microblog.py
-```
 
 ## Flask-Mail==0.9.1
 
@@ -44,3 +45,6 @@ FLASK_APP=microblog.py
 
 密码重置链接中将包含安全令牌。为了生成这些令牌，我将使用JSON Web Tokens，它也有一个流行的Python包
 
+## Flask-Bootstrap==3.3.7.1
+
+它提供了一个随时可用的基本模板，它安装了Bootstrap框架。

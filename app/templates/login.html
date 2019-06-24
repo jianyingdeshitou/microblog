@@ -1,35 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
+{% block app_content %}
     <h1>Sign In</h1>
-    {# 该novalidate属性用于告知Web浏览器不对此表单中的字段应用验证，
-    这有效地将此任务留给服务器中运行的Flask应用程序。
-    使用novalidate完全是可选的，但是对于第一种形式，设置它是很重要的，
-    因为这将允许您在本章后面测试服务器端验证。#}
-    <form action="" method="post" novalidate>
-        {# 该form.hidden_tag()模板参数生成一个隐藏字段，其中包括用来防止CSRF攻击形式的令牌。
-        要使表单受保护，您需要做的就是包含此隐藏字段并SECRET_KEY在Flask配置中定义变量。#}
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
-            {# 错误提示 #}
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-            {# 错误提示 #}
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    <br>
     <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
     <p>
         Forgot Your Password?

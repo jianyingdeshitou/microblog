@@ -17,6 +17,8 @@ from flask_login import LoginManager
 
 from flask_mail import Mail
 
+from flask_bootstrap import Bootstrap
+
 #################################################
 # 反向代理设置
 class ReverseProxied(object):
@@ -29,8 +31,7 @@ class ReverseProxied(object):
             environ['wsgi.url_scheme'] = scheme
         return self.app(environ, start_response)
 
-
-
+# app
 app = Flask(__name__)
 app.config.from_object(Config)
 app.wsgi_app = ReverseProxied(app.wsgi_app)
@@ -46,6 +47,9 @@ login.login_view = 'login'
 
 # 电子邮件支持
 mail = Mail(app)
+
+# bootstrap 模版
+bootstrap = Bootstrap(app)
 
 # 通过电子邮件记录错误
 # 命令行测试：python -m smtpd -n -c DebuggingServer localhost:8025
